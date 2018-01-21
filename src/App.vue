@@ -4,7 +4,7 @@
     <!-- <HelloWorld/> -->
     <todo-list :todos="todos"></todo-list>
 
-    <create-todo v-on:add-todo="addTodo"></create-todo>
+    <create-todo v-on:create-todo="addTodo"></create-todo>
   </div>
 </template>
 
@@ -41,9 +41,10 @@ export default {
     };
   },
   methods: {
-    addTodo(title) {
+    addTodo(title, project) {
       this.todos.push({
         title,
+        project,
         done: false,
       });
     },

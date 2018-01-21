@@ -13,14 +13,17 @@
             <label>Title</label>
             <input type="text" v-model="titleText"
             ref="title" defaultValue="">
+            <label>{{ titleText.length }}</label>
           </div><!-- end field -->
           <div class="field">
             <label>Project</label>
-            <input type="text" ref="project" defaultValue="">
+            <input type="text" v-model="projectText"
+            ref="project" defaultValue="">
+            <label>{{ projectText.length }}</label>
           </div><!-- end field-->
           <div class="ui two button attached buttons">
             <button type="button" class="ui basic blue button"
-            v-on:click="sendForm()">Create</button>
+            v-on:click="sendForm">Create</button>
             <button type="button" class="ui basic red button"
             v-on:click="closeForm">Cancel</button>
           </div><!-- end ui two buttons-->
@@ -54,16 +57,20 @@ export default {
         const title = this.titleText;
         const project = this.projectText;
 
-        this.$emit('create-todo', {
+        // emit the event to the parent
+        this.$emit('create-todo',
           title,
           project,
-          done: false,
-        });
+        );
 
-        this.newTodoText = '';
+        this.clearForm();
       }
 
       this.isCreating = false;
+    },
+    clearForm() {
+      this.titleText = '';
+      this.projectText = '';
     },
   },
 };
