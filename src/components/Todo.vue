@@ -45,7 +45,7 @@
         Completed
       </div>
       <div class="ui bottom attached red basic button"
-      v-show="!isEditing && !todo.done">
+      v-show="!isEditing && !todo.done" v-on:click="completeTodo(todo)">
         Pending
       </div>
     </div><!-- end centerd card -->
@@ -69,7 +69,7 @@ export default {
       this.isEditing = false;
     },
     completeTodo(todo) {
-      this.$emit('complete-todo', todo);
+      this.$emit('completeTodo', todo);
     },
     deleteTodo(todo) {
       this.$emit('delete-todo', todo);
